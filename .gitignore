@@ -1,1 +1,12 @@
+# Node.js
 node_modules
+pnpm-debug.log*
+
+# Diretórios de build/teste
+dist/
+build/
+coverage/
+
+# Jest config
+jest-cache/
+jest-config/
