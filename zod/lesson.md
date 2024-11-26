@@ -47,6 +47,18 @@ Crie um esquema para validar uma lista de produtos. Cada produto deve ter:
 
 [Test do Schema](src/__test__/lesson_004.test.ts)
 
-
 ---
+
+## 5. Validação enums
+Defina um enum de funções (`Admin`, `User`, `Guest`).  
+Crie um esquema para validar um objeto com:
+- `username` (string)
+- `role` (valores válidos do enum)
+
+Teste com dados válidos e inválidos.
+
+[Schema de validação](src/lesson_005.ts)
+
+[Test do Schema](src/__test__/lesson_005.test.ts)
+
 
