@@ -5,7 +5,7 @@ const addressSchema = z.object({
   numero: z.number().positive(),
   bairro: z.string(),
   cidade: z.string(),
-  cep: z.string().regex(/^\d{5}-\d{3}$/, "CEP inválido"),
+  cep: z.string().regex(/^\d{5}-?\d{3}$/, "CEP inválido"),
 });
 
 const schemaLesson007 = z.object({

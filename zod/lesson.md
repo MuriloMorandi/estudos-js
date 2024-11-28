@@ -98,7 +98,11 @@ Crie um esquema que valide um objeto com as propriedades:
     - `numero` (número inteiro positivo)
     - `bairro` (string)
     - `cidade` (string)
-    - `cep` (string, válido no formato `00000-000`)
+    - `cep` (string, válido no formato `00000-000` ou `00000000`)
+
+[Schema de validação](src/lesson_007.ts)
+
+[Test do Schema](src/__test__/lesson_007.test.ts)
 
 ---
 
