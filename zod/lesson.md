@@ -40,7 +40,7 @@ Crie um esquema para validar uma lista de produtos. Cada produto deve ter:
 - `nome` (string com pelo menos 3 caracteres)
 - `preco` (número, positivo maior que zero)
 - `quantidade`: (número, inteiro positivo)
-- `categoria`: (array de string  contendo no mínimo 1 item)
+- `categoria`: (array de string contendo no mínimo 1 item)
 
 [Schema de validação](src/lesson_004.ts)
 
@@ -105,4 +105,14 @@ Crie um esquema que valide um objeto com as propriedades:
 [Test do Schema](src/__test__/lesson_007.test.ts)
 
 ---
+
+## 8. Combinação de esquemas
+Crie dois esquemas:
+- Esquema 1: validação para usuário comum com as seguintes propriedades
+    - `username` (string, com no mínimo 2 caracteres)
+    - `nome` (string, com no mínimo 2 caracteres)
+- Esquema 2: validação para administrador 
+    - `role` (enum, [`Admin`, `User`])
+
+Use `.merge()` ou `.union()` para validar diferentes tipos de objetos com base nos esquemas criados
 
