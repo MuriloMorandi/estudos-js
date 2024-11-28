@@ -1,0 +1,34 @@
+name: Run Tests
+
+on:
+  push: # Gatilho para todos os commits em qualquer branch
+    branches:
+      - '**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Set up Node.js with specific version
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.13.1'
+          cache: 'pnpm'
+
+      # Install a specific version of pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm@9.6.0
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm install
+
+      # Run tests
+      - name: Run Tests
+        run: pnpm test
