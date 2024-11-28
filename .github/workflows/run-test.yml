@@ -1,9 +1,10 @@
 name: Run Tests
 
 on:
-  push: # Gatilho para todos os commits em qualquer branch
+  push:
     branches:
       - '**'
+  pull_request:
 
 jobs:
   test:
@@ -23,7 +24,13 @@ jobs:
 
       # Install a specific version of pnpm
       - name: Install pnpm
-        run: npm install -g pnpm@9.6.0
+        run: |
+          npm install -g pnpm@9.6.0
+          echo "::add-path::$(npm root -g)/pnpm"
+      
+      # Verify pnpm installation
+      - name: Verify pnpm
+        run: pnpm --version
 
       # Install dependencies
       - name: Install dependencies
