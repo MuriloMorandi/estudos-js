@@ -10,3 +10,6 @@ coverage/
 # Jest config
 jest-cache/
 jest-config/
+
+# Turbo Repo
+.turbo
