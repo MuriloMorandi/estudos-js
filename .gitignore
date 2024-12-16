@@ -13,3 +13,6 @@ jest-config/
 
 # Turbo Repo
 .turbo
+
+# Variáveis de ambiente
+.env
