@@ -40,7 +40,7 @@ module.exports = {
                 value: ':bricks: CI '
             },
             {
-                name: 'new package: Criação de um novo projeto no workspace',
+                name: 'package: Criação de um novo projeto no workspace',
                 value: ':package: new package'
             },
             {
@@ -78,10 +78,6 @@ module.exports = {
                 name: 'ci: Alterações nos arquivos de configuração de CI',
                 value: 'ci'
             },
-            {
-                name: 'empty: Alterações que não se encaixam em nenhum escopo específico',
-                value: ''
-            },
         ]  
     },
     {
@@ -98,7 +94,7 @@ module.exports = {
     ]).then((answers) => {
         let commitMessage = `${answers.type}`;
         commitMessage += `${answers.scope ? `(${answers.scope})` : ''}`;
-        commitMessage += `: ${ answers.subject } \n\n${ answers.body }`;
+        commitMessage += `: ${answers.subject} \n\n${answers.body}`;
         
         commit(commitMessage);
     });

@@ -7,10 +7,14 @@
   "license": "ISC",
   "scripts": {
     "commit": "git cz",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "commitizen": "^4.3.1",
+    "husky": "^9.1.7",
     "turbo": "^2.3.3"
   },
   "config": {
