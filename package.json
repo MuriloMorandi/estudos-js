@@ -6,10 +6,17 @@
   "author": "",
   "license": "ISC",
   "scripts": {
+    "commit": "git cz",
     "test": "turbo run test"
   },
   "devDependencies": {
+    "commitizen": "^4.3.1",
     "turbo": "^2.3.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./cz"
+    }
   },
   "packageManager": "pnpm@9.6.0"
 }
