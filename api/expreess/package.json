@@ -1,24 +1,25 @@
 {
-  "name": "expreess",
+  "name": "@estudos/expreess",
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
-    "dev": "tsx --env-file=.env src/server.ts",
+    "dev": "tsx --env-file=.env --watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "db:push": "node --env-file=.env drizzle-kit push ",
-    "db:gen": "node --env-file=.env  drizzle-kit generate",
+    "db:push": "drizzle-kit push ",
+    "db:gen": "drizzle-kit generate",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:integration": "jest --testPathPattern=src/__tests__/integration",
     "test:unit": "jest --testPathPattern=src/__tests__/unit",
     "test:schema": "jest --testPathPattern=src/__tests__/unit/schema",
-    "test:e2e": "jest --testPathPattern=src/__tests__/e2e"
+    "test:e2e": "jest --testPathPattern=src/__tests__/e2e -- --detectOpenHandles"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
     "drizzle-orm": "^0.37.0",
     "express": "^4.21.2",
+    "nanoid": "^5.0.9",
     "supertest": "^7.0.0",
     "zod": "^3.23.8"
   },

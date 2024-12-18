@@ -37,8 +37,9 @@ export class UserController {
   }
 
   async getById(req: Request<IResourceById>, res: Response): Promise<void> {
-    const id = parseInt(req.params.id, 10);
-    const user = this._userService.getById(id);
+    const id = req.params.id;
+    const user = await this._userService.getById(id);
+
     if (user) {
       res.json(user);
     } else {
@@ -61,14 +62,23 @@ export class UserController {
   }
    
   async update(req: Request<IResourceById, {}, User>, res: Response): Promise<void> {
-    const id = parseInt(req.params.id, 10);
+    const id = req.params.id;
     const { name, email } = req.body;
-    const updatedUser = await this._userService.update(id, { name, email });
-    res.json(updatedUser);
+
+    try
+    { 
+      const updatedUser = await this._userService.update(id, { name, email });
+      res.json(updatedUser);
+    }
+    catch (error)
+    {
+      res.status(500).json({ message: 'Internal server error' });
+    }
   }
 
   async delete(req: Request<IResourceById>, res: Response): Promise<void> {
-    const id = parseInt(req.params.id, 10);
+    const id = req.params.id;
+
     await this._userService.delete(id);
     res.status(204).send();
   }

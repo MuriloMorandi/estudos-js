@@ -48,14 +48,15 @@ export class UserService implements  IBaseService<User, User['id']> {
   }
 
   async getById(id: User['id']): Promise<User | undefined> {
-    const ret = await this._database
+    
+    const [ret] = await this._database
       .select()
       .from(users)
       .where(eq(users.id, id))
       .limit(1)
       .execute();
     
-    return ret[0];
+    return ret;
   }
 
   async create(data: Omit<User, 'id'>): Promise<User> {
@@ -69,14 +70,25 @@ export class UserService implements  IBaseService<User, User['id']> {
   }
 
   async update(id: User['id'], data: Partial<User>): Promise<User> {
-    const [ret] = await this._database
-      .update(users)
-      .set(data)
-      .where(eq(users.id, id))
-      .returning()
-      .execute();
+    try
+    {
+      const [ret] = await this._database
+        .update(users)
+        .set({
+          name: data.name,
+          atualizado_em: new Date(),
+        })
+        .where(eq(users.id, id))
+        .returning()
+        .execute();
     
-    return ret;
+      return ret;
+    }
+    catch (error)
+    {
+      console.log(error)
+      throw new Error('Internal server error');
+    }
   }
 
   async delete(id: User['id']): Promise<void> {
