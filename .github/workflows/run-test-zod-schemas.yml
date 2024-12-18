@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run Tests Zod
 
 on:
   push:
@@ -31,5 +31,5 @@ jobs:
         run: pnpm install
 
       # Run tests
-      - name: Run Tests
-        run: pnpm test
+      - name: Run Tests Zod
+        run: pnpm test --filter=@estudos/zod
