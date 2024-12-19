@@ -6,8 +6,9 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "commit": "git cz",
     "test": "turbo run test",
+    "build": "turbo run build",
+    "commit": "git cz",
     "prepare": "husky"
   },
   "devDependencies": {

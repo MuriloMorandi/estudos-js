@@ -1,7 +1,6 @@
 import updateUserSchema from "@schemas/user/updateUser.schema";
-import { nanoid } from "nanoid";
 
-const idTest = nanoid();
+const idTest = 'V1StGXR8_Z5jdHi6B-myT';
 
 describe("Validação do updateUserSchema", () => {
 
@@ -28,9 +27,9 @@ describe("Validação do updateUserSchema", () => {
     expect(result.error?.errors[0].message).toBe("ID inválido");
   });
 
-    it("Deve falhar se id não for um número inteiro", () => {
+    it("Deve falhar se id não for um nanoid inteiro", () => {
      const invalidInput = {
-        id: idTest,
+        id: 'not-a-nanoid',
         name: "John",
         email: "john@example.com",
       };

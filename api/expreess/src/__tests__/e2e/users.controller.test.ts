@@ -14,7 +14,6 @@ describe("API Endpoints user", () => {
         expect(res.status).toBe(201);
         expect(res.body).toHaveProperty('id');
         expect(res.body.name).toBe(newUser.name);
-
     });
 
     it('GET /users - should return all users', async () => {
