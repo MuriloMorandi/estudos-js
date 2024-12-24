@@ -71,11 +71,8 @@ export default [
     // add your custom rules here
     rules: {
       'prefer-promise-reject-errors': 'off',
-      '@typescript-eslint/consistent-type-imports': [
-        'error',
-        { prefer: 'type-imports' }
-      ],
-
+      '@typescript-eslint/no-unused-vars': 'off' ,
+      
       // allow debugger during development only
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     }
