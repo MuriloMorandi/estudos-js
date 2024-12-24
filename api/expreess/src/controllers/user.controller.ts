@@ -23,8 +23,8 @@ export class UserController {
         data: items,
         metadata: {
           total,
-          currentPage: req.query.pagina,
-          totalPages : Math.ceil(total / req.query.porPagina),
+          currentPage: req.query.page,
+          totalPages : Math.ceil(total / req.query.perPage),
         },
       }
 
