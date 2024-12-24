@@ -1,5 +1,4 @@
-name: Api Express Unit Tests
-run-name: ${{github.actor}} 
+name: Api Express Unit Tests 
 
 on:
   push:

@@ -1,12 +1,14 @@
 import express, { Request, Response } from 'express';
 import userRoutes from '@routes/user.routes';
 import errorHandler from '@middlewares/errorHandle.middleware';
+import cors from 'cors';
 
 export const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware para parsing de JSON
 app.use(express.json());
+app.use(cors())
 
 // Rota inicial
 app.get('/', (req: Request, res: Response) => {

@@ -4,6 +4,7 @@ on:
   push:
     paths:
      - 'zod/**'
+  workflow_dispatch:
 
 jobs:
   test:

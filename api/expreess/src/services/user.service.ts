@@ -18,19 +18,15 @@ export class UserService implements  IBaseService<User, User['id']> {
     try
     {
       const colunaOrdenacao = <AnyColumn>(
-        users[<keyof typeof users>data.ordenarPor]
+        users[<keyof typeof users>data.sortBy]
       );
 
       const items = await this._database
         .select()
         .from(users)
-        .orderBy(
-          data.ordenarAscendente
-            ? asc(colunaOrdenacao)
-            : desc(colunaOrdenacao)
-        )
-        .limit(Number(data.porPagina))
-        .offset(Number(data.porPagina) * (Number(data.pagina) - 1))
+        
+        .limit(Number(data.perPage))
+        .offset(Number(data.perPage) * (Number(data.page) - 1))
         .execute();
 
       const [total] = await this._database
