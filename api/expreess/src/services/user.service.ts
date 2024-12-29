@@ -7,51 +7,47 @@ import { users } from '@config/database/schema';
 import { User } from '@models/user.model';
 
 
-export class UserService implements  IBaseService<User, User['id']> {
+export class UserService implements IBaseService<User, User['id']> {
   private _database: LibSQLDatabase;
 
   constructor(databese: LibSQLDatabase) {
     this._database = databese
   }
-  
-  async getAll(data: IPagination): Promise<{items:User[], total:number}> {
-    try
-    {
-      const colunaOrdenacao = <AnyColumn>(
-        users[<keyof typeof users>data.sortBy]
-      );
 
-      const items = await this._database
-        .select()
-        .from(users)
-        
-        .limit(Number(data.perPage))
-        .offset(Number(data.perPage) * (Number(data.page) - 1))
-        .execute();
+  async getAll(data: IPagination): Promise<{ items: User[], total: number }> {
 
-      const [total] = await this._database
-        .select({ count: count() })
-        .from(users)
-        .execute();
+    const colunaOrdenacao = <AnyColumn>(
+      users[<keyof typeof users>data.sortBy]
+    );
 
-        return { items, total: total.count };
-    }
-    catch (error)
-    {
-      console.log(error)
-      throw new Error('Internal server error');
-    }
+    const items = await this._database
+      .select()
+      .from(users)
+      .orderBy(
+        data.sortDesc ? desc(colunaOrdenacao) : asc(colunaOrdenacao)
+      )
+      .limit(Number(data.perPage))
+      .offset(Number(data.perPage) * (Number(data.page) - 1))
+      .execute();
+
+    const [total] = await this._database
+      .select({ count: count() })
+      .from(users)
+      .execute();
+
+    return { items, total: total.count };
+
   }
 
   async getById(id: User['id']): Promise<User | undefined> {
-    
+
     const [ret] = await this._database
       .select()
       .from(users)
       .where(eq(users.id, id))
       .limit(1)
       .execute();
-    
+
     return ret;
   }
 
@@ -61,30 +57,25 @@ export class UserService implements  IBaseService<User, User['id']> {
       .values(data)
       .returning()
       .execute();
-  
-    return ret;  
+
+    return ret;
   }
 
   async update(id: User['id'], data: Partial<User>): Promise<User> {
-    try
-    {
-      const [ret] = await this._database
-        .update(users)
-        .set({
-          name: data.name,
-          atualizado_em: new Date(),
-        })
-        .where(eq(users.id, id))
-        .returning()
-        .execute();
-    
-      return ret;
-    }
-    catch (error)
-    {
-      console.log(error)
-      throw new Error('Internal server error');
-    }
+
+    const [ret] = await this._database
+      .update(users)
+      .set({
+        name: data.name,
+        email: data.email,
+        atualizado_em: new Date(),
+      })
+      .where(eq(users.id, id))
+      .returning()
+      .execute();
+
+    return ret;
+
   }
 
   async delete(id: User['id']): Promise<void> {
@@ -101,7 +92,7 @@ export class UserService implements  IBaseService<User, User['id']> {
       .where(eq(users.email, email))
       .limit(1)
       .execute();
-    
+
     return ret[0];
   }
 }
