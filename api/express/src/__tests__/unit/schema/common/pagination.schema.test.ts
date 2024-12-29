@@ -1,30 +1,30 @@
 import paginationSchema from '@schemas/common/pagination.schema';
 
-describe('Schema de Paginação', () => {
+describe('Schema de paginação', () => {
   it('deve validar um objeto de paginação válido', () => {
     const validInput = {
-      porPagina: '10',
-      pagina: '1',
-      ordenarPor: 'nome',
-      ordenarAsc: 'true',
+      perPage: '10',
+      page: '1',
+      sortBy: 'nome',
+      sortDesc: 'true',
     };
 
     const result = paginationSchema.parse(validInput);
 
     expect(result).toEqual({
-      porPagina: 10,
-      pagina: 1,
-      ordenarPor: 'nome',
-      ordenarAsc: true,
+      perPage: 10,
+      page: 1,
+      sortBy: 'nome',
+      sortDesc: true,
     });
   });
 
-  it('deve falhar quando porPagina não for um inteiro positivo', () => {
+  it('deve falhar quando perPage não for um inteiro positivo', () => {
     const invalidInput = {
-      porPagina: '-5',
-      pagina: '1',
-      ordenarPor: 'nome',
-      ordenarAsc: 'true',
+      perPage: '-5',
+      page: '1',
+      sortBy: 'nome',
+      sortDesc: 'true',
     };
 
     expect(() => paginationSchema.parse(invalidInput)).toThrow(
@@ -34,10 +34,10 @@ describe('Schema de Paginação', () => {
 
   it('deve falhar quando pagina não for um inteiro positivo', () => {
     const invalidInput = {
-      porPagina: '10',
-      pagina: '-2',
-      ordenarPor: 'nome',
-      ordenarAsc: 'true',
+      perPage: '10',
+      page: '-2',
+      sortBy: 'nome',
+      sortDesc: 'true',
     };
 
     expect(() => paginationSchema.parse(invalidInput)).toThrow(
@@ -47,10 +47,10 @@ describe('Schema de Paginação', () => {
 
   it('deve falhar quando ordenarPor tiver menos de 2 caracteres', () => {
     const invalidInput = {
-      porPagina: '10',
-      pagina: '1',
-      ordenarPor: 'a',
-      ordenarAsc: 'true',
+      perPage: '10',
+      page: '1',
+      sortBy: 'a',
+      sortDesc: 'true',
     };
 
     expect(() => paginationSchema.parse(invalidInput)).toThrow(
@@ -58,42 +58,42 @@ describe('Schema de Paginação', () => {
     );
   });
 
-  it('deve falhar quando ordenarAsc não for "true" ou "false"', () => {
+  it('deve falhar quando sortDesc não for "true" ou "false"', () => {
     const invalidInput = {
-      porPagina: '10',
-      pagina: '1',
-      ordenarPor: 'nome',
-      ordenarAsc: 'invalid',
+      perPage: '10',
+      page: '1',
+      sortBy: 'nome',
+      sortDesc: 'invalid',
     };
     
     expect(() => paginationSchema.parse(invalidInput)).toThrow(
-     'O valor de ordenarAsc deve ser um booleano.'
+     'O valor de sortDesc deve ser um booleano.'
     );
   });
 
   it('deve remover espaços extras em ordenarPor', () => {
     const input = {
-      porPagina: '10',
-      pagina: '1',
-      ordenarPor: '   nome   ',
-      ordenarAsc: 'true',
+      perPage: '10',
+      page: '1',
+      sortBy: '   nome   ',
+      sortDesc: 'true',
     };
 
     const result = paginationSchema.parse(input);
 
-    expect(result.ordenarPor).toBe('nome');
+    expect(result.sortBy).toBe('nome');
   });
     
-  it('deve a string ordenarAsc em um Boolean ', () => {
+  it('deve a string sortDesc em um Boolean ', () => {
     const input = {
-      porPagina: '10',
-      pagina: '1',
-      ordenarPor: '   nome   ',
-      ordenarAsc: 'true',
+      perPage: '10',
+      page: '1',
+      sortBy: '   nome   ',
+      sortDesc: 'true',
     };
 
     const result = paginationSchema.parse(input);
 
-    expect(result.ordenarAsc).toBe(true);
+    expect(result.sortDesc).toBe(true);
   });
 });
