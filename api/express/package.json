@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsx --env-file=.env --watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "tsx dist/server.js",
     "db:push": "drizzle-kit push ",
     "db:gen": "drizzle-kit generate",
     "test": "jest",
