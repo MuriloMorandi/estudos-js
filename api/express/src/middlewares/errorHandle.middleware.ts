@@ -4,7 +4,6 @@ import { ErrorRequestHandler } from 'express';
 
 // Middleware de tratamento de erros
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-    console.log("errorHandler");
     
     if (err instanceof LibsqlError)
     {

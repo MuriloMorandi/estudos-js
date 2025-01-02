@@ -14,7 +14,8 @@ export const users = sqliteTable('users', {
 
 export const tasks = sqliteTable('tasks', {
   id: text('id').primaryKey().$default(()=> nanoid()),
-  descricao: text('descricao').notNull(),
+  titulo: text('titulo').notNull(),
+  descricao: text('descricao'),
   ...userAudit,
   ...timestamps,
 });

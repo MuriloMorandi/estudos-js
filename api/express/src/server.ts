@@ -1,7 +1,9 @@
 import express, { Request, Response } from 'express';
-import userRoutes from '@routes/user.routes';
-import errorHandler from '@middlewares/errorHandle.middleware';
 import cors from 'cors';
+
+import errorHandler from '@middlewares/errorHandle.middleware';
+import userRoutes from '@routes/user.routes';
+import taskRoutes from '@routes/task.routes';
 
 export const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +18,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/users', userRoutes);
+app.use('/task', taskRoutes);
 
 app.use(errorHandler);
 

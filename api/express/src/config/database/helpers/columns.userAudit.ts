@@ -1,5 +1,5 @@
 import { text, SQLiteTableWithColumns } from "drizzle-orm/sqlite-core";
-import { tasks, users } from "../schema";
+import { users } from "../schema";
 
 export const userAudit = {
   criado_por: text("criado_por").references(() => users.id ).notNull(),
