@@ -14,7 +14,7 @@ export default z.object({
     .refine(
       (val) => val.toLowerCase() === 'true' || val.toLowerCase() === 'false', 
       {
-        message: 'O valor de sortDesc deve ser um booleano.',
+        message: 'O valor de "sortDesc" deve ser um booleano.',
       }
     )
     .transform((val) => val.toLowerCase() === 'true'),

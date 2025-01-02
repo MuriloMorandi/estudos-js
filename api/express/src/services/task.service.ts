@@ -26,16 +26,16 @@ export class TaskService implements IBaseService<Task, Task['id']> {
     const items = await this._database
       .select({
         id: tasks.id,
-        titulo: tasks.titulo,
-        descricao: tasks.descricao,
-        criado_por: criadoPor.name,
-        criado_em: tasks.criado_em,
-        atualizado_por: atualizadoPor.name,
-        atualizado_em: tasks.atualizado_em
+        title: tasks.title,
+        description: tasks.description,
+        created_by: criadoPor.name,
+        criado_em: tasks.created_at,
+        updated_by: atualizadoPor.name,
+        atualizado_em: tasks.updated_at,
       })
       .from(tasks)
-      .innerJoin(criadoPor, eq(criadoPor.id, tasks.criado_por))
-      .leftJoin(atualizadoPor, eq(atualizadoPor.id, tasks.atualizado_por ))
+      .innerJoin(criadoPor, eq(criadoPor.id, tasks.created_by))
+      .leftJoin(atualizadoPor, eq(atualizadoPor.id, tasks.updated_by ))
       .orderBy(
         data.sortDesc ? desc(colunaOrdenacao) : asc(colunaOrdenacao)
       )
@@ -60,16 +60,16 @@ export class TaskService implements IBaseService<Task, Task['id']> {
     const [ret] = await this._database
       .select({
         id: tasks.id,
-        titulo: tasks.titulo,
-        descricao: tasks.descricao,
-        criado_por: criadoPor.nome,
-        criado_em: tasks.criado_em,
-        atualizado_por: atualizadoPor.nome,
-        atualizado_em: tasks.atualizado_em
+        title: tasks.title,
+        description: tasks.description,
+        created_by: criadoPor.name,
+        criado_em: tasks.created_at,
+        updated_by: atualizadoPor.name,
+        atualizado_em: tasks.updated_at
       })
       .from(tasks)
-      .innerJoin(criadoPor, eq(tasks.criado_por, criadoPor.id))
-      .leftJoin(atualizadoPor, eq(tasks.atualizado_por, atualizadoPor.id))
+      .innerJoin(criadoPor, eq(tasks.created_by, criadoPor.id))
+      .leftJoin(atualizadoPor, eq(tasks.updated_by, atualizadoPor.id))
       .where(eq(tasks.id, id))
       .limit(1)
       .execute();
@@ -93,7 +93,7 @@ export class TaskService implements IBaseService<Task, Task['id']> {
       .update(tasks)
       .set({
         ...data,
-        atualizado_em: new Date(),
+        updated_at: new Date(),
       })
       .where(eq(tasks.id, id))
       .returning()

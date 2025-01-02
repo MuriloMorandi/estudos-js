@@ -14,8 +14,8 @@ export const users = sqliteTable('users', {
 
 export const tasks = sqliteTable('tasks', {
   id: text('id').primaryKey().$default(()=> nanoid()),
-  titulo: text('titulo').notNull(),
-  descricao: text('descricao'),
+  title: text('title').notNull(),
+  description: text('description'),
   ...userAudit,
   ...timestamps,
 });
@@ -23,4 +23,14 @@ export const tasks = sqliteTable('tasks', {
 export const tasksRelations = relations(tasks, ({ many, one }) => ({
   ...userAuditRelation(one, tasks),
 }));
+
+
+export const comments = sqliteTable('tasks', {
+  id: text('id').primaryKey().$default(()=> nanoid()),
+  
+  title: text('title').notNull(),
+  description: text('description'),
+  
+  ...timestamps,
+});
 

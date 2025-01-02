@@ -51,9 +51,9 @@ export class TaskController {
 
   async create(req: Request<{}, {}, Omit<Task, "id">>, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { descricao, titulo } = req.body;
+      const { description, title } = req.body;
 
-      const newTask = await this._taskService.create({ descricao, titulo, criado_por: '8lNQXuP9RBm81yPOZbOsr'  });
+      const newTask = await this._taskService.create({ description, title, created_by: '8lNQXuP9RBm81yPOZbOsr'  });
       res.status(201).json(newTask);
     }
     catch (error) {
@@ -64,9 +64,9 @@ export class TaskController {
   async update(req: Request<IResourceById, {}, Omit<Task, "id">>, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = req.params.id;
-      const { descricao, titulo } = req.body;
+      const { description, title } = req.body;
 
-      const updatedUser = await this._taskService.update(id, { descricao, titulo, atualizado_por: '8lNQXuP9RBm81yPOZbOsr'});
+      const updatedUser = await this._taskService.update(id, { description, title, updated_by: '8lNQXuP9RBm81yPOZbOsr'});
       res.json(updatedUser);
     }
     catch (error) {

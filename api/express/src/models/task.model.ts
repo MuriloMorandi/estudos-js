@@ -1,9 +1,9 @@
 export interface Task {
   id: string;
-  titulo: string;
-  descricao: string | null;
-  criado_por: string,
-  criado_em: Date
-  atualizado_por: string | null,
-  atualizado_em: Date | null
+  title: string;
+  description: string | null;
+  created_by: string,
+  created_at: Date
+  updated_by: string | null,
+  updated_at: Date | null
 }

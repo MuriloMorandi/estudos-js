@@ -5,7 +5,7 @@ describe('Schema de paginação', () => {
     const validInput = {
       perPage: '10',
       page: '1',
-      sortBy: 'nome',
+      sortBy: 'name',
       sortDesc: 'true',
     };
 
@@ -14,7 +14,7 @@ describe('Schema de paginação', () => {
     expect(result).toEqual({
       perPage: 10,
       page: 1,
-      sortBy: 'nome',
+      sortBy: 'name',
       sortDesc: true,
     });
   });
@@ -23,7 +23,7 @@ describe('Schema de paginação', () => {
     const invalidInput = {
       perPage: '-5',
       page: '1',
-      sortBy: 'nome',
+      sortBy: 'name',
       sortDesc: 'true',
     };
 
@@ -36,7 +36,7 @@ describe('Schema de paginação', () => {
     const invalidInput = {
       perPage: '10',
       page: '-2',
-      sortBy: 'nome',
+      sortBy: 'name',
       sortDesc: 'true',
     };
 
@@ -62,7 +62,7 @@ describe('Schema de paginação', () => {
     const invalidInput = {
       perPage: '10',
       page: '1',
-      sortBy: 'nome',
+      sortBy: 'name',
       sortDesc: 'invalid',
     };
     
@@ -75,20 +75,20 @@ describe('Schema de paginação', () => {
     const input = {
       perPage: '10',
       page: '1',
-      sortBy: '   nome   ',
+      sortBy: '   name   ',
       sortDesc: 'true',
     };
 
     const result = paginationSchema.parse(input);
 
-    expect(result.sortBy).toBe('nome');
+    expect(result.sortBy).toBe('name');
   });
     
   it('deve a string sortDesc em um Boolean ', () => {
     const input = {
       perPage: '10',
       page: '1',
-      sortBy: '   nome   ',
+      sortBy: '   name   ',
       sortDesc: 'true',
     };
 
