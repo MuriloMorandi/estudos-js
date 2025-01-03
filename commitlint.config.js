@@ -1,12 +1,16 @@
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
-    'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'test', 'chore']],
+    'type-enum': [ 2, 'always',
+      ['feat', 'fix', 'WIP', 'test', 'refactor','chore', 'docs', 'CI', 'new package', 'style'],
+    ],
+    'scope-enum': [ 2, 'always', ['core', 'api', 'web', 'utils', 'database', 'ci'], ],
     'scope-case': [2, 'always', 'lower-case'],
+    'type-case': [2, 'always', 'lower-case'],
+    'subject-empty': [2, 'never'],
+    'type-empty': [2, 'never'],
     'subject-case': [2, 'always', ['sentence-case', 'start-case']],
-    'subject-empty': [2, 'never'], // Garantir que o assunto não esteja vazio
-    'type-empty': [2, 'never'], // Garantir que o tipo não esteja vazio
-    'type-case': [2, 'always', 'lower-case'], // Tipo em minúsculas
+    'header-max-length': [2, 'always', 100],
   },
   parserPreset: {
     parserOpts: {
