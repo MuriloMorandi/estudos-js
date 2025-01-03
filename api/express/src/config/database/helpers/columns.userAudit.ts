@@ -10,6 +10,6 @@ export const userAuditRelation = <T extends SQLiteTableWithColumns<any>>(
   one: any,
   table: T
 ) => ({
-  created_by: one(users, {fields:[table.created_by], references:[users.id], notNull:true}),
+  created_by: one(users, { fields:[table.created_by], references:[users.id] }),
   updated_by: one(users, { fields: [table.updated_by], references: [users.id] }),
 })
