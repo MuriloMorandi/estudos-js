@@ -28,7 +28,7 @@ jobs:
         run: pnpm install
       
       - name: Build Api Express
-        run: pnpm build --filter=@estudos/expreess
+        run: pnpm build --filter=@estudos/express
 
   test-unit:
     needs: build
@@ -53,6 +53,6 @@ jobs:
         run: pnpm install
 
       - name: Run Tests Schema
-        run: pnpm test --filter=@estudos/expreess -- --testPathPattern=src/__tests__/unit
+        run: pnpm test --filter=@estudos/express -- --testPathPattern=src/__tests__/unit
 
       
