@@ -33,7 +33,7 @@ export default [
    * pluginVue.configs["flat/recommended"]
    *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
    */
-  ...pluginVue.configs[ 'flat/essential' ],
+  ...pluginVue.configs['flat/essential'],
 
   // https://github.com/vuejs/eslint-config-typescript
   ...vueTsEslintConfig({
@@ -71,15 +71,23 @@ export default [
     // add your custom rules here
     rules: {
       'prefer-promise-reject-errors': 'off',
-      '@typescript-eslint/no-unused-vars': 'off' ,
-      
+      '@typescript-eslint/no-unused-vars': 'off',
+      "vue/max-attributes-per-line": ["error", {
+        "singleline": {
+          "max": 1
+        },
+        "multiline": {
+          "max": 1
+        }
+      }],
+
       // allow debugger during development only
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     }
   },
 
   {
-    files: [ 'src-pwa/custom-service-worker.ts' ],
+    files: ['src-pwa/custom-service-worker.ts'],
     languageOptions: {
       globals: {
         ...globals.serviceworker
