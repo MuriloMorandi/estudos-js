@@ -11,7 +11,7 @@ describe("Validação do createUserSchema", () => {
     }
   });
 
-  it("deve falhar quando o nome tem menos de 2 caracteres", () => {
+  it("deve falhar quando o 'name' tem menos de 2 caracteres", () => {
     const invalidData = { name: "A", email: "joao@example.com" };
     const result = createUserSchema.safeParse(invalidData);
 
@@ -33,7 +33,7 @@ describe("Validação do createUserSchema", () => {
     }
   });
 
-  it("deve falhar quando o nome está vazio", () => {
+  it("deve falhar quando o name está vazio", () => {
     const invalidData = { name: " ", email: "joao@example.com" };
     const result = createUserSchema.safeParse(invalidData);
 

@@ -68,7 +68,7 @@ export class UserService implements IBaseService<User, User['id']> {
       .set({
         name: data.name,
         email: data.email,
-        atualizado_em: new Date(),
+        updated_at: new Date(),
       })
       .where(eq(users.id, id))
       .returning()
