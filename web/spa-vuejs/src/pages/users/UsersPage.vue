@@ -6,8 +6,6 @@
         <span class="text-h5 text-weight-bolder" >Usuarios</span>
         <span class="text-subtitle2 text-weight-light">Cadastro de usuarios</span>
       </div>
-      <q-space/>
-      <q-btn color="green" label="Adicionar" icon="mdi-plus" />
     </div>
 
     <div class="full-width">
@@ -17,21 +15,25 @@
         :columns="usersColumns" 
         :metadata="metadata" 
         :loading="loading"
+        :hideDialog="hideDialog"
         v-model:pagination="pagination"
-        @onRefresh="onRefresh" 
+        @onRefresh="onRefresh"
+        @onAdd="openModal"
       />
       
     </div>
-
+    
+    
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import usersColumns from './UsersColumns';
 import DefaultTable from 'src/components/DefaultTable.vue';
 import { useTable } from 'src/composables/useTable'
 import { IRefreshProps } from 'src/types/IRefreshProps';
+import DialogBase from 'components/base/DialogBase.vue';
 
 const {
   $q,
@@ -43,14 +45,13 @@ const {
 } = useTable({
   sortByDefault: 'name'
 });
-
+const showDialog = ref(false);
+const hideDialog = ref(false);
 
 const onRefresh = async (props: IRefreshProps) => {
-
   const { descending, page, rowsPerPage, sortBy } = props.pagination;
 
   try {
-    console.log(props.pagination)
 
     await fetchData('users', {
       page,
@@ -58,7 +59,7 @@ const onRefresh = async (props: IRefreshProps) => {
       sortDesc: descending,
       sortBy
     });
-    console.log(props.pagination)
+    
 
     pagination.value.page = page;
     pagination.value.rowsPerPage = rowsPerPage;
@@ -73,12 +74,10 @@ const onRefresh = async (props: IRefreshProps) => {
         'Um erro interno ocorreu carregando as informações, tente novamente mais tarde.',
       color: 'negative',
     });
-
   }
 }
 
 onMounted(() => {
-
   onRefresh({
     pagination: {
       page: pagination.value.page,
@@ -90,5 +89,19 @@ onMounted(() => {
   });
 
 })
+
+const handleOpenModal = () => {
+  hideDialog.value = !hideDialog.value
+}
+
+const openModal = () => {
+  $q.dialog({
+    component: DialogBase,
+    componentProps: {
+      title: 'Usuario',
+    },
+  })
+}
+
 
 </script>
