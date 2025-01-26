@@ -1,0 +1,9 @@
+{
+  "name": "@estudos/typescript-config",
+  "version": "1.0.0",
+  "description": "Pacote de configuração base do typescript.",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  }
+}

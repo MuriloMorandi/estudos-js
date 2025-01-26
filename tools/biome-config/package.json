@@ -1,0 +1,9 @@
+{
+  "name": "@estudos/biome-config",
+  "version": "1.0.0",
+  "description": "Pacote de configuração base do biomejs.",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  } 
+}
