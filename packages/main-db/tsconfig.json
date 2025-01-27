@@ -1,0 +1,9 @@
+{
+    "extends": "@estudos/typescript-config/base.json",
+    "private": true,
+    "compilerOptions": {
+        "outDir": "dist",
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
+}
