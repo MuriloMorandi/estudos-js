@@ -1,5 +1,5 @@
 export interface IResponseMetadata {
-  total: number;
-  totalPages: number;
-  currentPage: number; 
+	total: number;
+	totalPages: number;
+	currentPage: number;
 }
