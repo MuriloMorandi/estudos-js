@@ -2,3 +2,5 @@ packages:
   - 'zod'
   - 'api/*'
   - 'web/*'
+  - 'packages/*'
+  - 'tools/*'
