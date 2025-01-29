@@ -26,6 +26,9 @@ jobs:
         
       - name: Install dependencies
         run: pnpm install
+
+      - name: Build Main DB
+        run: pnpm build --filter=@estudos/main-db
       
       - name: Build Api Express
         run: pnpm build --filter=@estudos/express
