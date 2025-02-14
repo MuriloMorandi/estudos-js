@@ -1,9 +1,12 @@
 {
-	"extends": "@estudos/typescript-config/base.json",
-	"private": true,
 	"compilerOptions": {
-		"outDir": "dist"
-	},
+		"module": "ES6", // Ou "ES6" dependendo do seu uso
+		"target": "ESNext",
+		"declaration": true,
+		"outDir": "dist",
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+  	},
 	"include": ["src"],
 	"exclude": ["node_modules", "dist"]
 }
